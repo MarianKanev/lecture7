@@ -1,0 +1,30 @@
+from flights.models import Flight 
+f = Flight(origin="New York", destination="London", duration=415)
+f.save
+
+#======================================================================
+# This is after link Flight and Airport
+
+from flights.models import Airport, Flight
+jfk = Airport(code="JFK", city = "New York City")
+lhr = Airport(code="LHR", city ="London")
+jfk.save()
+lhr.save()
+
+f = Flight(origin=jfk, destination=lhr, duration=415)
+f.save()
+
+#=======================================================================
+# This is example of enter data in Passenger model 
+
+from flights.models import Flight, Passenger
+f = Flight.objects.get(pk=2)
+
+p = Passenger(first="Alice", last="Adams")
+p.save()
+p.flights.add(f)
+
+
+
+
+
